@@ -1,9 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+
+import Nav from "./components/Nav"
+import About from "./components/About";
+import Hero from "./components/Hero";
+import Highlights from "./components/Highlights";
+import Testimonials from "./components/Testimonials";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-   <div>Let's Go!</div>
+   <>
+    <Nav />
+    <Hero />
+    <Highlights />
+    <Testimonials />
+    <About />
+    <Footer />
+   </>
   );
 }
 
