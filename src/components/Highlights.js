@@ -1,9 +1,13 @@
+import { Link } from "react-router-dom";
+
 function Highlights () {
     return (
      <section className="section">
         <div className="highlights">
+            <div>
             <h1 className="title">SPECIALS</h1>
-            <button>Order Online</button>
+            <button><Link to="/Orders">Order Online</Link></button>
+            </div>
             <div className="specials-grid">
                 <div>
                     <img className="specials-img" src={require("./assets/greek salad.jpg")} alt="greek salad" />

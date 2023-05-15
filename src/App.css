@@ -2,31 +2,30 @@
   margin: 0px;
 }
 
-button {
+button, a {
   border-radius: 30px;
   padding: 8px;
   margin-top: 20px;
+  text-decoration: none;
+  color: #282c34;
+  font-size: small;
 }
 
 .section {
   display: grid;
-  grid-auto-rows: minmax(150px, auto);
   align-items: center;
   height: auto;
 }
 
 nav {
   background-color: #282c34;
-  padding: 10px;
-  position: fixed;
-  width: 100vw;
   text-align: center;
+  padding: 20px;
 }
 
 nav a {
   text-decoration: none;
   font-size: 16px;
-  margin-right: 20px;
   padding: 30px;
   color: whitesmoke;
 }
@@ -38,7 +37,8 @@ footer {
 }
 
 .main {
-  margin: 350px;
+  margin: 25vw;
+  margin-top: 15vw;
   padding: 30px;
   border-radius: 30px;
   position: absolute;
@@ -50,40 +50,44 @@ footer {
 .title {
   font-style: normal;
   font-weight: 700;
-  font-size: 80px;
-  line-height: 97px;
+  font-size: 6vw;
+  line-height: 7vw;
 }
 
 .bg-img {
   width: 100vw;
+  min-height: 70vh;
+  overflow: hidden;
+  object-fit: cover;
   text-align: center;
 }
 
 .highlights {
   text-align: center;
-  padding: 60px 25vw;
   background-color: whitesmoke;
+  padding: 5vw 15vw;
 }
 
 .specials-grid {
   display: grid;
-  grid-auto-rows: minmax(80px, auto);
   grid-template-columns: 1fr 1fr 1fr;
   text-align: left;
-  margin: 20px;
-  column-gap: 40px;
+  column-gap: 6vw;
+  margin-top: 5vh;
+  height: auto;
+  padding: 10px;
 }
 
 .specials-img {
   height: 120px;
-  width: 170px;
+  width: 14vw;
   overflow: hidden;
   border-radius: 30px;
 }
 
 .testimonials {
   text-align: center;
-  padding: 60px 25vw;
+  padding: 5vw 15vw;
   background-color: lightslategray;
 }
 
@@ -101,8 +105,8 @@ footer {
 .about-txt {
   position: absolute;
   background-color: aliceblue;
-  width: 350px;
-  margin-left: 200px;
+  width: 25vw;
+  margin: 15vw;
   padding: 20px;
   border-radius: 30px;
 }
@@ -122,4 +126,54 @@ h4 {
   font-size: 30px;
   text-decoration: none;
   color: whitesmoke;
+}
+
+.reservations {
+  background-color: whitesmoke;
+  display: grid;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.form {
+  display: grid;
+  margin: auto;
+  gap: 20px;
+}
+
+.input {
+  width: 40vw;
+}
+
+.approved {
+  border-color: green;
+  color: green;
+}
+
+.box {
+  padding: 30px;
+  margin: auto;
+  text-align: left;
+  width: 50vw;
+  background-color: whitesmoke;
+  filter: drop-shadow(0px 40px 40px rgba(0, 0, 0, 0.25));
+  border-radius: 30px;
+  margin-top: 0px;
+}
+
+input, textarea, select {
+  font-size: small;
+  border-radius: 12px;
+  padding: 10px;
+  align-items: center;
+  border-style: solid;
+  border-width: 2px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+::placeholder {
+  color: black;
 }
