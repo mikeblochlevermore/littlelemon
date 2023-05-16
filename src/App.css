@@ -177,3 +177,9 @@ input, textarea, select {
 ::placeholder {
   color: black;
 }
+
+.confirmed {
+  text-align: center;
+  height: 50vh;
+  margin-top: 20vh;
+}

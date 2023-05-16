@@ -1,6 +1,8 @@
-import {useState} from "react";
+import { useState } from "react"
+import { fetchAPI, submitAPI } from "../Api"
+import { useNavigate } from "react-router-dom";
 
-function Reservations ({ availableTimes, dispatch }) {
+function Reservations () {
 
     const occasions = ["Occasion", "Just hungry", "Birthday", "Anniversary", "Other"];
 
@@ -13,7 +15,8 @@ function Reservations ({ availableTimes, dispatch }) {
     const [date, setDate] = useState('');
     const [approvedDate, setapprovedDate] = useState('');
 
-    const [time, setTime] = useState('');
+    const [time, setTime] = useState(['Select a Time']);
+    const [availableTimes, setAvailableTimes] = useState(['Select a Date First']);
     const [approvedTime, setapprovedTime] = useState('');
 
     const [guests, setGuests] = useState('');
@@ -25,12 +28,17 @@ function Reservations ({ availableTimes, dispatch }) {
     const [comments, setComments] = useState('');
     const [approvedComments, setapprovedComments] = useState('');
 
+    function updateTimes (date) {
+        setAvailableTimes(fetchAPI(date))
+        return;
+    }
 
     // The date is dispatched to App.js to get a list of available times for that day
-    const handleDateChange = (event) => {
+    const handleDateChange = async (event) => {
         setDate(event.target.value);
-        dispatch(date);
-        setapprovedDate("approved");
+        updateTimes(date)
+        setapprovedDate('approved');
+        // Call fetchAPI with the selected date
       };
 
     const handleNameChange = (event) => {
@@ -63,9 +71,15 @@ function Reservations ({ availableTimes, dispatch }) {
         setapprovedComments("approved");
       };
 
+    const navigate = useNavigate();
+
     const handleFormSubmit = e => {
         e.preventDefault();
         console.log({name, email, date, time, guests, occasion, comments});
+        const formData = {name, email, date, time, guests, occasion, comments}
+        if (submitAPI(formData) === true)
+        {navigate("/confirmed");}
+        else {navigate("/Reservations");}
       };
 
     return (
@@ -102,17 +116,14 @@ function Reservations ({ availableTimes, dispatch }) {
                             />
 
                         <select
-                            id="time"
+                            key={date}
                             required={true}
                             onChange={handleTimeChange}
                             className={approvedTime}
                         >
-                            {
-                                // Note the availableTimes data is accessed via props from the App.js component
-                            }
-                            {availableTimes.map(time =>
-                                    <option key={time}>
-                                    {time}
+                            {availableTimes.map(times =>
+                                    <option key={times}>
+                                    {times}
                                     </option>
                                 )}
                         </select>
