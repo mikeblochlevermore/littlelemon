@@ -1,9 +1,8 @@
 import {useState} from "react";
 
-function Reservations () {
+function Reservations ({ availableTimes, dispatch }) {
 
     const occasions = ["Occasion", "Just hungry", "Birthday", "Anniversary", "Other"];
-    const times = ["Select a Time", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
 
     const [name, setName] = useState('');
     const [approvedName, setapprovedName] = useState('');
@@ -26,6 +25,14 @@ function Reservations () {
     const [comments, setComments] = useState('');
     const [approvedComments, setapprovedComments] = useState('');
 
+
+    // The date is dispatched to App.js to get a list of available times for that day
+    const handleDateChange = (event) => {
+        setDate(event.target.value);
+        dispatch(date);
+        setapprovedDate("approved");
+      };
+
     const handleNameChange = (event) => {
         setName(event.target.value);
         setapprovedName("approved");
@@ -35,11 +42,6 @@ function Reservations () {
     setEmail(event.target.value);
     setapprovedEmail("approved");
     };
-
-    const handleDateChange = (event) => {
-        setDate(event.target.value);
-        setapprovedDate("approved");
-      };
 
     const handleTimeChange = (event) => {
         setTime(event.target.value);
@@ -78,13 +80,13 @@ function Reservations () {
                         placeholder="Full Name"
                         onChange={handleNameChange}
                         className={approvedName}
-                        required="true"
+                        required={true}
                     />
 
                     <input
                         type="text"
                         id="email"
-                        required="true"
+                        required={true}
                         placeholder="Email"
                         onChange={handleEmailChange}
                         className={approvedEmail}
@@ -93,7 +95,7 @@ function Reservations () {
                         <input
                             type="date"
                             id="date"
-                            required="true"
+                            required={true}
                             value={date}
                             onChange={handleDateChange}
                             className={approvedDate}
@@ -101,11 +103,14 @@ function Reservations () {
 
                         <select
                             id="time"
-                            required="true"
+                            required={true}
                             onChange={handleTimeChange}
                             className={approvedTime}
                         >
-                            {times.map(time =>
+                            {
+                                // Note the availableTimes data is accessed via props from the App.js component
+                            }
+                            {availableTimes.map(time =>
                                     <option key={time}>
                                     {time}
                                     </option>
@@ -118,7 +123,7 @@ function Reservations () {
                             min="1"
                             max="10"
                             id="guests"
-                            required="true"
+                            required={true}
                             onChange={handleGuestsChange}
                             className={approvedGuests}
                         />

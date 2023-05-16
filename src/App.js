@@ -1,3 +1,5 @@
+import { useReducer } from "react"
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLemon } from '@fortawesome/free-solid-svg-icons'
 
@@ -11,6 +13,19 @@ import Footer from "./components/Footer"
 import "./App.css"
 
 function App() {
+
+    const initializeTimes = () => {
+        return ["Select a Time", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
+      };
+
+      const updateTimes = (state, date) => {
+        // Code to update availableTimes based on the selected date
+        // For now, let's return the same available times regardless of the date
+        return state;
+      };
+
+      const [availableTimes, dispatch] = useReducer(updateTimes, null, initializeTimes);
+
     return (
         <div>
             <nav className="nav">
@@ -25,10 +40,11 @@ function App() {
                 }
                 <Routes>
                     <Route path="/" element={<Home />}></Route>
-                    <Route path="/Reservations" element={<Reservations />}></Route>
+                    <Route path="/Reservations" element={<Reservations availableTimes={availableTimes} dispatch={dispatch}/>}></Route>
                     <Route path="/About" element={<About />}></Route>
                     <Route path="/Orders" element={<Orders />}></Route>
                 </Routes>
+
                 <Footer />
             </div>
         </div>
